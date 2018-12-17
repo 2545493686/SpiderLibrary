@@ -20,16 +20,25 @@ namespace LanQ.SpiderLibrary
             TextFile = textFile;
         }
 
-        public List<string>[] GetText(string[] regexPatternes)
+        public List<string>[] GetText(string[] regexPatternes, bool logInConsole = true)
         {
+            if (logInConsole)
+                Console.WriteLine("Spider Start!");
+
             List<string>[] ret = new List<string>[regexPatternes.Length];
 
             for (int i = 0; i < regexPatternes.Length; i++)
             {
+                if (logInConsole)
+                    Console.WriteLine("Spider[{0}]: {1}", i, UrlList[i]);
+
                 string source = Http.Get(UrlList[i]);
                 MatchCollection matches = Regex.Matches(source, regexPatternes[i]);
 
                 ret[i] = new List<string>();
+
+                if (logInConsole)
+                    Console.WriteLine("Spider[{0}]: success get {1}", i, matches.Count);
 
                 foreach (Match item in matches)
                 {
@@ -41,6 +50,9 @@ namespace LanQ.SpiderLibrary
                     ret[i].Add(item.Value);
                 }
             }
+
+            if (logInConsole)
+                Console.WriteLine("Spider End!");
 
             return ret;
         }
