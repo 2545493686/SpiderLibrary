@@ -5,15 +5,19 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using LanQ.HttpLibrary;
+using LanQ;
 
 namespace LanQ.SpiderLibrary
 {
     public class Spider
     {
         public string[] UrlList { get; }
-        public Spider(string[] url)
+        protected TextFile TextFile { get; }
+
+        public Spider(string[] url, TextFile textFile = null)
         {
             UrlList = url;
+            TextFile = textFile;
         }
 
         public List<string>[] GetText(string[] regexPatternes)
@@ -29,6 +33,11 @@ namespace LanQ.SpiderLibrary
 
                 foreach (Match item in matches)
                 {
+                    if (TextFile == null) //文本属性存在时写入文件
+                    {
+                        TextFile.WriteLine(item.Value);
+                    }
+
                     ret[i].Add(item.Value);
                 }
             }

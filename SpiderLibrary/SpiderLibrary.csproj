@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,9 @@
   <ItemGroup>
     <Reference Include="HttpLibrary">
       <HintPath>..\..\HttpLibrary\HttpLibrary\bin\Debug\HttpLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="LanQ">
+      <HintPath>..\..\LanQ\LanQ\bin\Debug\LanQ.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
