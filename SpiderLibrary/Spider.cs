@@ -28,7 +28,7 @@ namespace LanQ.SpiderLibrary
             TextFile = textFile;
         }
 
-        public List<string[]>[] GetText(Pattern[] patternes, bool logInConsole = true)
+        public List<string[]>[] GetText(Pattern[] patternes, int sleep = 0, bool logInConsole = true)
         {
             if (logInConsole)
                 Console.WriteLine("Spider Start!");
@@ -40,7 +40,7 @@ namespace LanQ.SpiderLibrary
                 if (logInConsole)
                     Console.WriteLine("Spider[{0}/{1}]: {2}", i, UrlList.Length, UrlList[i]);
 
-                string source = Http.Get(UrlList[i]); //获得当前url的源
+                string source = Http.Get(UrlList[i], sleep); //获得当前url的源
                 ret[i] = new List<string[]>();
 
                 List<MatchCollection> matches = new List<MatchCollection>();
