@@ -38,7 +38,7 @@ namespace LanQ.SpiderLibrary
             for (int i = 0; i < UrlList.Length; i++)
             {
                 if (logInConsole)
-                    Console.WriteLine("Spider[{0}]: {1}", i, UrlList[i]);
+                    Console.WriteLine("Spider[{0}/{1}]: {2}", i, UrlList.Length, UrlList[i]);
 
                 string source = Http.Get(UrlList[i]); //获得当前url的源
                 ret[i] = new List<string[]>();
